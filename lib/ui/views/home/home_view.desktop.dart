@@ -2,6 +2,7 @@ import 'package:filledstacks_academy/ui/common/app_colors.dart';
 import 'package:filledstacks_academy/ui/common/app_constants.dart';
 import 'package:filledstacks_academy/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,22 +32,70 @@ class HomeViewDesktop extends ViewModelWidget<HomeViewModel> {
                 flex: 2,
               ),
               GradientText(
-                "Master Flutter",
+                "MASTER\nFLUTTER",
                 style: const TextStyle(
                   fontSize: 80,
                   fontWeight: FontWeight.w800,
+                  height: 0.95,
                 ),
                 colors: const [
-                  Color(0x0030e474),
-                  Color(0x000c8eef),
+                  Color(0xff30e474),
+                  Color(0xff0c8eef),
                 ],
+                gradientType: GradientType.linear,
               ),
               const Text(
-                "On The Web",
+                "ON THE WEB",
                 style: TextStyle(
                   fontSize: 80,
                   fontWeight: FontWeight.w800,
                 ),
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "Build amazing software, the right way.",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  GradientText(
+                    "Sign up to be notified",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    colors: const [
+                      Color(0xff30e474),
+                      Color(0xff0c8eef),
+                    ],
+                    gradientType: GradientType.linear,
+                  )
+                ],
+              ),
+              verticalSpaceMedium,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: SvgPicture.asset('sign-up-arrow.svg'),
+              ),
+              verticalSpaceSmall,
+              Row(
+                children: [
+                  const TextField(
+                    decoration:
+                        InputDecoration.collapsed(hintText: "Your email"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Notify me",
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(
+                flex: 2,
               ),
             ],
           ),
