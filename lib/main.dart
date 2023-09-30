@@ -1,4 +1,6 @@
+import 'package:filledstacks_academy/ui/common/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:filledstacks_academy/app/app.bottomsheets.dart';
 import 'package:filledstacks_academy/app/app.dialogs.dart';
@@ -23,6 +25,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveApp(
       builder: (_) => MaterialApp.router(
+        title: "FilledStacks Academy",
+        theme: Theme.of(context).copyWith(
+          primaryColor: kcBackgroundColor,
+          focusColor: kcPrimaryColor,
+          textTheme: GoogleFonts.openSansTextTheme().apply(
+            bodyColor: Colors.white,
+          ),
+        ),
         routerDelegate: stackedRouter.delegate(),
         routeInformationParser: stackedRouter.defaultRouteParser(),
       ),
