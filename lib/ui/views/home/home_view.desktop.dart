@@ -10,6 +10,7 @@ import 'package:filledstacks_academy/ui/widgets/common/academy_icon.dart';
 import 'package:filledstacks_academy/ui/widgets/common/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:seo/seo.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -22,46 +23,52 @@ class HomeViewDesktop extends ViewModelWidget<HomeViewModel> {
   Widget build(BuildContext context, HomeViewModel viewModel) {
     return Scaffold(
       backgroundColor: kcBackgroundColor,
-      body: Center(
-        child: SizedBox(
-          width: kdDesktopMaxContentWidth,
-          height: kdDesktopMaxContentHeight,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AcademyIcon(),
-                  const Spacer(
-                    flex: 2,
-                  ),
-                  const HomeTitle(),
-                  const HomeSubtitle(),
-                  verticalSpaceMedium,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 100),
-                    child: SvgPicture.asset('sign-up-arrow.svg'),
-                  ),
-                  verticalSpaceSmall,
-                  Row(
-                    children: [
-                      InputField(
-                        controller: controller,
-                      ),
-                      horizontalSpaceSmall,
-                      HomeNotifyButton(
-                        onTap: viewModel.captureEmail,
-                      ),
-                    ],
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                ],
-              ),
-              const HomeImage(),
-            ],
+      body: Seo.head(
+        tags: const [
+          MetaTag(name: 'title', content: 'Flutter SEO Example'),
+          LinkTag(rel: 'canonical', href: 'http://www.example.com'),
+        ],
+        child: Center(
+          child: SizedBox(
+            width: kdDesktopMaxContentWidth,
+            height: kdDesktopMaxContentHeight,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const AcademyIcon(),
+                    const Spacer(
+                      flex: 2,
+                    ),
+                    const HomeTitle(),
+                    const HomeSubtitle(),
+                    verticalSpaceMedium,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 100),
+                      child: SvgPicture.asset('sign-up-arrow.svg'),
+                    ),
+                    verticalSpaceSmall,
+                    Row(
+                      children: [
+                        InputField(
+                          controller: controller,
+                        ),
+                        horizontalSpaceSmall,
+                        HomeNotifyButton(
+                          onTap: viewModel.captureEmail,
+                        ),
+                      ],
+                    ),
+                    const Spacer(
+                      flex: 3,
+                    ),
+                  ],
+                ),
+                const HomeImage(),
+              ],
+            ),
           ),
         ),
       ),
