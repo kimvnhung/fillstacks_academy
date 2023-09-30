@@ -6,6 +6,8 @@ import 'package:filledstacks_academy/app/app.bottomsheets.dart';
 import 'package:filledstacks_academy/app/app.dialogs.dart';
 import 'package:filledstacks_academy/app/app.locator.dart';
 import 'package:filledstacks_academy/app/app.router.dart';
+import 'package:seo/html/seo_controller.dart';
+import 'package:seo/html/tree/widget_tree.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -23,22 +25,26 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveApp(
-      builder: (_) => MaterialApp.router(
-        title: "FilledStacks Academy",
-        theme: Theme.of(context).copyWith(
-          primaryColor: kcBackgroundColor,
-          focusColor: kcPrimaryColor,
-          textTheme: GoogleFonts.openSansTextTheme().apply(
-            bodyColor: Colors.white,
+    return SeoController(
+      enabled: true,
+      tree: WidgetTree(context: context),
+      child: ResponsiveApp(
+        builder: (_) => MaterialApp.router(
+          title: "FilledStacks Academy",
+          theme: Theme.of(context).copyWith(
+            primaryColor: kcBackgroundColor,
+            focusColor: kcPrimaryColor,
+            textTheme: GoogleFonts.openSansTextTheme().apply(
+              bodyColor: Colors.white,
+            ),
           ),
+          routerDelegate: stackedRouter.delegate(),
+          routeInformationParser: stackedRouter.defaultRouteParser(),
         ),
-        routerDelegate: stackedRouter.delegate(),
-        routeInformationParser: stackedRouter.defaultRouteParser(),
-      ),
-    ).animate().fadeIn(
-          delay: const Duration(milliseconds: 50),
-          duration: const Duration(milliseconds: 400),
-        );
+      ).animate().fadeIn(
+            delay: const Duration(milliseconds: 50),
+            duration: const Duration(milliseconds: 400),
+          ),
+    );
   }
 }
